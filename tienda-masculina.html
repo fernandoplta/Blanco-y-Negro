@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Masculina</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #111;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      background-color: #222;
+      padding: 15px;
+      text-align: center;
+      border-bottom: 2px solid #444;
+    }
+
+    .galeria {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .producto {
+      background-color: #1c1c1c;
+      border: 1px solid #444;
+      padding: 15px;
+      width: 220px;
+      text-align: center;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .producto:hover {
+      transform: scale(1.05);
+      border-color: #4CAF50;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 10px;
+      background-color: #4CAF50;
+      border: none;
+      padding: 10px;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    #carrito {
+      background-color: #222;
+      padding: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sección Tenis -->
+  <section id="tenis">
+    <h2>Tenis</h2>
+    <div class="galeria">
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1600185365483-26d7b477a9ef" alt="Tenis Negros">
+        <h3>Tenis Negros</h3>
+        <p>$1,200</p>
+        <button onclick="agregarAlCarrito('Tenis Negros', 1200)">Agregar al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1575537302964-96cd47c06d0b" alt="Tenis Blancos">
+        <h3>Tenis Blancos</h3>
+        <p>$1,350</p>
+        <button onclick="agregarAlCarrito('Tenis Blancos', 1350)">Agregar al carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Gorras -->
+  <section id="gorras">
+    <h2>Gorras</h2>
+    <div class="galeria">
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1614273487529-74b224b96c5c" alt="Gorra Roja">
+        <h3>Gorra Roja</h3>
+        <p>$450</p>
+        <button onclick="agregarAlCarrito('Gorra Roja', 450)">Agregar al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1623961032201-58e5e6f53fa2" alt="Gorra Negra">
+        <h3>Gorra Negra</h3>
+        <p>$500</p>
+        <button onclick="agregarAlCarrito('Gorra Negra', 500)">Agregar al carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Lentes -->
+  <section id="lentes">
+    <h2>Lentes</h2>
+    <div class="galeria">
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1600484234370-43c02d46f18b" alt="Lentes Aviador">
+        <h3>Lentes Aviador</h3>
+        <p>$800</p>
+        <button onclick="agregarAlCarrito('Lentes Aviador', 800)">Agregar al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1589758438368-69353a1c2c4f" alt="Lentes Negros">
+        <h3>Lentes Negros</h3>
+        <p>$950</p>
+        <button onclick="agregarAlCarrito('Lentes Negros', 950)">Agregar al carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carrito -->
+  <section id="carrito">
+    <h2>Carrito de Compras</h2>
+    <ul id="lista-carrito"></ul>
+    <p><strong>Total: $<span id="total">0</span></strong></p>
+  </section>
+
+  <script>
+    let carrito = [];
+    let total = 0;
+
+    function agregarAlCarrito(nombre, precio) {
+      carrito.push({ nombre, precio });
+      total += precio;
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById('lista-carrito');
+      const totalElemento = document.getElementById('total');
+      lista.innerHTML = '';
+      carrito.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.nombre} - $${item.precio}`;
+        lista.appendChild(li);
+      });
+      totalElemento.textContent = total;
+    }
+  </script>
+
+</body>
+</html>
